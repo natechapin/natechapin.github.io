@@ -7,8 +7,20 @@
   <title>Adam's test PWA!</title>
 </head>
 <body>
+  <script>
+    async function getContacts() {
+      const props = ["name", "email", "tel", "address", "icon"];
+      const opts = { multiple: true };
+      try {
+        const contacts = await navigator.contacts.select(props, opts);
+        console.log(contacts);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  </script>
   <h1>Adam's test PWA!</h1>
-  <button>Select contact...</button>
+  <button onclick="getContacts">Select contact...</button>
 </body>
 </html>
 
