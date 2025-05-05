@@ -1,0 +1,7 @@
+{
+  "name": "Adam's PWA",
+  "short_name": "Adam's PWA",
+  "start_url": ".",
+  "scope": ".",
+  "display": "minimal-ui"
+}
