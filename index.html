@@ -18,9 +18,26 @@
         console.error(err);
       }
     }
+
+    async function photoPick() {
+      const pickerOpts = {
+        types: [
+          {
+            description: "Images",
+            accept: {
+              "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+            },
+          },
+        ],
+        excludeAcceptAllOption: true,
+        multiple: false,
+      };
+      await window.showOpenFilePicker(pickerOpts);
+    }
   </script>
   <h1>Adam's test PWA!</h1>
   <button onclick="getContacts()">Select contact...</button>
+  <button onclick="photoPick()">Pick photo...</button>
 </body>
 </html>
 
