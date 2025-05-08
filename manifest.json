@@ -4,8 +4,8 @@
   "start_url": ".",
   "scope": ".",
   "display": "minimal-ui",
-  "background_color": "peachpuff",
-  "theme_color": "rgb(255 218 185)",
+  "background_color": "purple",
+  "theme_color": "purple",
   "icons": [
     {
       "src": "/icon.png",
