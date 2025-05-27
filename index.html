@@ -18,19 +18,9 @@
         console.error(err);
       }
     }
-
-    async function share() {
-      const shareData = {
-        title: "Example",
-        text: "Learn more about example.com",
-        url: "https://example.com",
-      };
-      await navigator.share(shareData);
-    }
   </script>
   <h1>Adam's test PWA!</h1>
   <button onclick="getContacts()">Select contact...</button>
-  <button onclick="share()">Share...</button>
   <input type="file" accept="image" />
 </body>
 </html>
