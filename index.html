@@ -6,6 +6,10 @@
   <link rel="manifest" href="manifest.json" />
   <title>Adam's test PWA!</title>
   <style>
+    data[value] {
+        display: none;
+    }
+
     @media all and (display-mode: fullscreen) {
         data[value="fullscreen"] {
             display: inline-block;
@@ -43,6 +47,10 @@
         console.error(err);
       }
     }
+
+    async function goFullscreen() {
+      await document.documentElement.requestFullscreen();
+    }
   </script>
   <h1>Adam's test PWA!</h1>
   <h4>Display mode:
@@ -53,6 +61,7 @@
       <data value="browser">browser</data>
     </strong>
   <h4>
+  <button onclick="goFullscreen()">Go fullscreen...</button>
   <button onclick="getContacts()">Select contact...</button>
   <input type="file" accept="image" />
 </body>
