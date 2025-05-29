@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json" />
   <title>Adam's test PWA!</title>
+  <style>
+    @media all and (display-mode: fullscreen) {
+        data[value="fullscreen"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: standalone) {
+        data[value="standalone"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: minimal-ui) {
+        data[value="minimal-ui"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: browser) {
+        data[value="browser"] {
+            display: inline-block;
+        }
+    }
+  </style>
 </head>
 <body>
   <script>
@@ -20,6 +45,14 @@
     }
   </script>
   <h1>Adam's test PWA!</h1>
+  <h4>Display mode:
+    <strong>
+      <data value="fullscreen">fullscreen</data>
+      <data value="standalone">standalone</data>
+      <data value="minimal-ui">minimal-ui</data>
+      <data value="browser">browser</data>
+    </strong>
+  <h4>
   <button onclick="getContacts()">Select contact...</button>
   <input type="file" accept="image" />
 </body>
