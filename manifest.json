@@ -4,12 +4,17 @@
   "start_url": ".",
   "scope": ".",
   "display": "browser",
-  "background_color": "purple",
-  "theme_color": "purple",
+  "background_color": "#800080",
+  "theme_color": "#800080",
   "icons": [
     {
       "src": "/icon.png",
       "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
