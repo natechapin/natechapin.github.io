@@ -3,7 +3,7 @@
   "short_name": "Adam's PWA",
   "start_url": ".",
   "scope": ".",
-  "display": "browser",
+  "display": "minimal-ui",
   "background_color": "#800080",
   "theme_color": "#800080",
   "icons": [
