@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "io.github.adamraine.twa",
-        "sha256_cert_fingerprints": ["BA:11:96:67:6D:7E:DE:9B:FA:93:C0:B4:BF:4F:0E:E4:72:71:44:E2:70:B3:9D:23:A0:18:48:29:59:46:9C:C8"]
+        "sha256_cert_fingerprints": ["60:B1:94:17:A3:CF:E8:2E:C5:40:5B:21:CC:B0:FA:A1:A4:C2:90:05:FF:87:D3:75:31:FA:4A:D7:7B:90:16:EB"]
       }
     }]
