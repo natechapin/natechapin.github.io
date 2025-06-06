@@ -33,6 +33,13 @@
             display: inline-block;
         }
     }
+
+    .draggable {
+      display: block;
+      width: 200px;
+      height: 200px;
+      user-select: drag;
+    }
   </style>
 </head>
 <body>
@@ -67,6 +74,7 @@
   <div>
     <a href="https://example.com">Cross-origin link...</a>
   </div>
+  <div class="draggable"></div>
 </body>
 </html>
 
