@@ -18,6 +18,10 @@
       height: env(titlebar-area-height, auto);
     }
 
+    .draggable,.not-draggable {
+      padding: 4px;
+    }
+
     .draggable {
       height: 100%;
       background-color: green;
@@ -28,6 +32,10 @@
       height: 100%;
       background-color: red;
       app-region: no-drag;
+    }
+
+    .content {
+      margin-top: env(titlebar-area-height, 0);
     }
   </style>
 </head>
@@ -43,7 +51,9 @@
       </span>
     </div>
   </div>
-  <h1>WCO example!</h1>
+  <div class="content">
+    <h1>WCO example!</h1>
+  </div>
 </body>
 </html>
 
