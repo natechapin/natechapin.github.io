@@ -12,18 +12,20 @@
 
     .header {
       position: fixed;
-      left: env(titlebar-area-inset-left, 0);
-      right: env(titlebar-area-inset-right, 0);
-      top: env(titlebar-area-inset-top, 0);
-      bottom: env(titlebar-area-inset-bottom, calc(100% - 50px));
+      left: env(titlebar-area-x, 0);
+      top: env(titlebar-area-y, 0);
+      width: env(titlebar-area-width, 100%);
+      height: env(titlebar-area-height, auto);
     }
 
     .draggable {
+      height: 100%;
       background-color: green;
       app-region: drag;
     }
 
     .not-draggable {
+      height: 100%;
       background-color: red;
       app-region: no-drag;
     }
