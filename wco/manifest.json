@@ -1,8 +1,8 @@
 {
-  "name": "Adam's PWA",
-  "short_name": "Adam's PWA",
-  "start_url": ".",
-  "scope": ".",
+  "name": "Adam's WCO PWA",
+  "short_name": "Adam's WCO PWA",
+  "start_url": "/wco",
+  "scope": "/wco",
   "display": "minimal-ui",
   "display_override": ["window-controls-overlay"],
   "background_color": "#800080",
