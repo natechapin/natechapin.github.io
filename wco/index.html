@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json" />
+  <title>Adam's test WCO PWA!</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .header {
+      position: fixed;
+      left: env(titlebar-area-inset-left, 0);
+      right: env(titlebar-area-inset-right, 0);
+      top: env(titlebar-area-inset-top, 0);
+      bottom: env(titlebar-area-inset-bottom, calc(100% - 50px));
+    }
+
+    .draggable {
+      background-color: green;
+      app-region: drag;
+    }
+
+    .not-draggable {
+      background-color: red;
+      app-region: no-drag;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="draggable">
+      Draggable!
+      <div class="not-draggable">
+        Not Draggable!
+        <div class="draggable">
+          Draggable!
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
