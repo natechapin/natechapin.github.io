@@ -60,6 +60,8 @@
     async function goFullscreen() {
       await document.documentElement.requestFullscreen();
     }
+
+    window.localStorage.setItem('data', 'store');
   </script>
   <h1>Adam's test PWA!</h1>
   <h4>Display mode:
