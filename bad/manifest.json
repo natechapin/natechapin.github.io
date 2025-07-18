@@ -1,0 +1,13 @@
+{
+  "name": "Adam's Bad PWA",
+  "short_name": "Adam's Bad PWA",
+  "start_url": "/bad",
+  "scope": "/bad",
+  "display": "minimal-ui",
+  "background_color": "#800080",
+  "theme_color": "#800080",
+  "bound_webapk": {
+    "runtime_host": "com.google.android.apps.chrome",
+    "runtime_host_application_name": "Chromium"
+  }
+}
