@@ -67,6 +67,24 @@
     <a href="https://example.com"><h2>Cross-origin link</h2></a>
     <div class="spacer"></div>
   </div>
+  <script>
+function updateWCO() {
+    let wco = navigator.windowControlsOverlay;
+    document.getElementById("visible").innerText = wco.visible;
+    let rect = wco.getTitlebarAreaRect();
+    document.getElementById("rect").innerText = rect.x + " " + rect.y + " " + rect.width + " " + rect.height;
+}
+
+function setup() {
+    let wco = navigator.windowControlsOverlay;
+    if (!wco) return;
+    wco.ongeometrychange = () => {
+        document.getElementById("lastevent").innerText = performance.now();
+    };
+    setInterval(updateWCO, 1000);
+}
+setup();
+  </script>
 </body>
 </html>
 
