@@ -47,6 +47,41 @@
       height: 1000px;
       background: yellow;
     }
+
+    data[value] {
+        display: none;
+    }
+
+    @media all and (display-mode: fullscreen) {
+        data[value="fullscreen"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: standalone) {
+        data[value="standalone"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: minimal-ui) {
+        data[value="minimal-ui"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: browser) {
+        data[value="browser"] {
+            display: inline-block;
+        }
+    }
+
+    @media all and (display-mode: window-controls-overlay) {
+        data[value="window-controls-overlay"] {
+            display: inline-block;
+        }
+    }
+
   </style>
 </head>
 <body>
@@ -64,6 +99,15 @@
   <div class="content">
     <h1>WCO example!</h1>
     <h2 class="draggable">Draggable (not in the header)!</h2>
+    <h4>Display mode:
+      <strong>
+        <data value="fullscreen">fullscreen</data>
+        <data value="standalone">standalone</data>
+        <data value="minimal-ui">minimal-ui</data>
+        <data value="browser">browser</data>
+        <data value="window-controls-overlay">window-controls-overlay</data>
+      </strong>
+    <h4>
     <a href="https://example.com"><h2>Cross-origin link</h2></a>
     <div id="visible"></div>
     <div id="rect"></div>
