@@ -1,6 +1,6 @@
 {
-  "name": "Adam's WCO PWA",
-  "short_name": "Adam's WCO PWA",
+  "name": "WCO PWA",
+  "short_name": "WCO PWA",
   "start_url": "/wco",
   "scope": "/wco",
   "display": "minimal-ui",

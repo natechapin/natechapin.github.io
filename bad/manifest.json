@@ -1,6 +1,6 @@
 {
-  "name": "Adam's Bad PWA",
-  "short_name": "Adam's Bad PWA",
+  "name": "Bad PWA",
+  "short_name": "Bad PWA",
   "start_url": "/bad",
   "scope": "/bad",
   "display": "minimal-ui",
