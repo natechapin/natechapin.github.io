@@ -1,0 +1,31 @@
+{
+  "short_name": "FH demo",
+  "name": "FH demo",
+  "icons": [],
+  "start_url": "/index.html",
+  "background_color": "#88FFFF",
+  "display": "standalone",
+  "scope": "/",
+  "launch_handler": {
+    "client_mode": "navigate-new"
+  },
+  "file_handlers": [
+    {
+      "action": "/index.html?plaintext&first_launch",
+      "name": "Plain Text",
+      "accept": {
+        "text/plain": [".txt", ".md", ".csv", ".text", ".foo", ".bar", ".foobar"]
+      },
+      "icons": []
+    },
+    {
+      "action": "/index.html?image&first_launch",
+      "accept": {
+        "image/jpeg": [".jpeg", ".jpg"]
+      },
+      "launch_type": "multiple-clients",
+      "icons": []
+    }
+  ],
+  "theme_color": "#9aca42"
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="manifest" href="/fileHandling/manifest.json" />
+    <title>FH demo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" type="module" async></script>
+  </head>
+  <body>
+    <h1>
+      FH demo
+    </h1>
+
+    <div class="section hide" id="problems">
+      <h2>Problems</h2>
+      <ul>
+        <li class="error" id="file-handling-problem">
+          FileHandling is not available (ensure Chrome was started with
+          --enable-features=FileHandlingAPI)
+        </li>
+        <li class="error" id="file-system-problem">
+          NativeFileSystem is not available (ensure Chrome was started with
+          --enable-features=NativeFileSystemAPI)
+        </li>
+      </ul>
+    </div>
+    <div class="section hide" id="launch-files">
+      <h2>Launched Files</h2>
+      <canvas id="image-view" hidden>Here's where an image would go</canvas>
+      <div id="editors-container"></div>
+    </div>
+    <div class="section hide" id="opened-files" hidden>
+      <h2>Opened Files</h2>
+      <p>Files which can be edited and saved back to the file system.</p>
+      <div id="opened-editors-container"></div>
+      <button id="open-files-button">Open File</button>
+      <button id="open-folder-button">Open Folder</button>
+    </div>
+    <div class="section hide" id="manifest-types-mime">
+      <h2>Manifest File Types (MIME):</h2>
+      <ul id="manifest-types-mime-list"></ul>
+    </div>
+    <div class="section hide" id="manifest-types-extension">
+      <h2>Manifest File Types (Extension):</h2>
+      <ul id="manifest-types-extension-list"></ul>
+    </div>
+  </body>
+  <template id="file-editor-template">
+    <div>
+      <h3>File: <span name="file-name"></span></h3>
+      <textarea
+        name="file-contents"
+        cols="80"
+        rows="10"
+        style="white-space: pre-wrap"
+      >
+      </textarea>
+      <br />
+      <button name="save-button">Save</button>
+      <button name="delete-button">Delete</button>
+      <br />
+    </div>
+  </template>
+  <script src="add-links.js"></script>
+</html>
