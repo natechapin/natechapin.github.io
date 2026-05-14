@@ -1,0 +1,22 @@
+{
+  "name": "LaunchParams files PWA",
+  "short_name": "LaunchParams files  PWA",
+  "start_url": "/launchQueueFiles",
+  "scope": "/launchQueueFiles",
+  "display": "standalone",
+  "background_color": "#800000",
+  "theme_color": "#800000",
+  "icons": [
+    {
+      "src": "/icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512x512_maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

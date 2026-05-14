@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>File handler</title>
+<pre id="log">waiting for launchQueue…</pre>
+<script>
+const log = (m) => document.getElementById('log').textContent += '\n' + m;
+
+if (!('launchQueue' in window)) {
+  log('FAIL: launchQueue not exposed (not running as installed app / TWA)');
+} else {
+  launchQueue.setConsumer(async (launchParams) => {
+    log(`launchParams.targetURL = ${launchParams.targetURL}`);
+    log(`launchParams.files.length = ${launchParams.files.length}`);
+
+    for (const handle of launchParams.files) {
+      log(`\n--- handle.name = ${handle.name} ---`);
+      log(`kind = ${handle.kind}`);
+      try {
+        const file = await handle.getFile();
+        log(`getFile() OK, size=${file.size} type=${file.type}`);
+        const buf = await file.arrayBuffer();
+        const bytes = new Uint8Array(buf);
+        const header = String.fromCharCode(...bytes.slice(0, 16));
+        log(`first 16 bytes: ${JSON.stringify(header)}`);
+      } catch (e) {
+        log(`getFile() failed: ${e}`);
+      }
+
+      try {
+        const perm = await handle.queryPermission({mode: 'readwrite'});
+        log(`queryPermission(readwrite) = ${perm}`);
+        const w = await handle.createWritable({keepExistingData: true});
+        log(`createWritable() OK — write grant active, no prompt shown`);
+        await w.seek((await handle.getFile()).size);
+        await w.write(new TextEncoder().encode('\n/* write-marker */\n'));
+        await w.close();
+        log(`write+close OK`);
+      } catch (e) {
+        log(`createWritable() failed: ${e}`);
+      }
+    }
+  });
+}
+</script>
