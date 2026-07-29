@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen API test</title>
+    <style>
+        body { font-family: sans-serif; margin: 8px; }
+        button { display: block; width: 100%; margin: 6px 0; padding: 12px; font-size: 15px; }
+        #log { font-family: monospace; font-size: 11px; white-space: pre-wrap; background: #f3f3f3; padding: 6px; min-height: 120px; }
+        iframe { width: 100%; height: 90px; border: 2px solid #888; }
+        #reddiv { background: #c33; color: #fff; padding: 10px; }
+        video { width: 120px; }
+    </style>
+</head>
+<body>
+<script>
+    const params = new URLSearchParams(location.search);
+    const IS_FRAME = params.get('frame') === '1';
+
+    function say(msg) {
+        const line = new Date().toISOString().slice(11, 23) + (IS_FRAME ? ' [iframe] ' : ' [top] ') + msg;
+        if (IS_FRAME) {
+            parent.postMessage({ type: 'fstest-log', line: line }, location.origin);
+        } else {
+            const el = document.getElementById('log');
+            el.textContent += line + '\n';
+            el.scrollTop = el.scrollHeight;
+        }
+    }
+
+    function fsState() {
+        const ua = navigator.userActivation;
+        return 'fsEnabled=' + document.fullscreenEnabled +
+            ' fsElement=' + (document.fullscreenElement ? document.fullscreenElement.tagName : 'null') +
+            ' activation=' + (ua ? ua.isActive : 'n/a');
+    }
+
+    function tryFs(label, element) {
+        say(label + ' clicked | ' + fsState());
+        let settled = false;
+        setTimeout(function () {
+            if (!settled) { say(label + ' >>> STILL PENDING after 2s (hang)'); }
+        }, 2000);
+        element.requestFullscreen().then(function () {
+            settled = true;
+            say(label + ' >>> RESOLVED | ' + fsState());
+        }, function (err) {
+            settled = true;
+            say(label + ' >>> REJECTED: ' + err.name + ' - ' + err.message);
+        });
+    }
+
+    document.addEventListener('fullscreenchange', function () { say('event fullscreenchange | ' + fsState()); });
+    document.addEventListener('fullscreenerror', function () { say('event fullscreenerror | ' + fsState()); });
+</script>
+
+<script>
+    if (IS_FRAME) {
+        document.write('<button onclick="tryFs(\'FS-from-iframe\', document.documentElement)">Enter fullscreen (from iframe)</button>');
+    }
+</script>
+
+<script>
+    if (!IS_FRAME) {
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addEventListener('message', function (e) {
+                if (e.origin === location.origin && e.data && e.data.type === 'fstest-log') {
+                    document.getElementById('log').textContent += e.data.line + '\n';
+                }
+            });
+
+            let stream = null;
+
+            document.getElementById('b1').onclick = function () { tryFs('FS-top-html', document.documentElement); };
+            document.getElementById('b2').onclick = function () { tryFs('FS-top-div', document.getElementById('reddiv')); };
+            document.getElementById('b3').onclick = function () {
+                say('exitFullscreen clicked | ' + fsState());
+                document.exitFullscreen().then(function () { say('exit RESOLVED'); }, function (e) { say('exit REJECTED: ' + e.message); });
+            };
+            document.getElementById('b4').onclick = function () {
+                say('getUserMedia clicked');
+                navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (s) {
+                    stream = s;
+                    document.getElementById('cam').srcObject = s;
+                    say('camera+mic STARTED (stream live)');
+                }, function (e) { say('getUserMedia REJECTED: ' + e.name); });
+            };
+            document.getElementById('b5').onclick = function () {
+                if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; say('camera STOPPED'); }
+            };
+            document.getElementById('b6').onclick = function () {
+                say('camera-then-FS clicked');
+                navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (s) {
+                    stream = s;
+                    document.getElementById('cam').srcObject = s;
+                    say('camera STARTED, requesting FS in same task | ' + fsState());
+                    tryFs('FS-after-gUM', document.documentElement);
+                }, function (e) { say('getUserMedia REJECTED: ' + e.name); });
+            };
+        });
+    }
+</script>
+
+<script>
+    if (!IS_FRAME) {
+        document.write(
+            '<h3>Fullscreen API test</h3>' +
+            '<button id="b1">1. Enter fullscreen (top frame, &lt;html&gt;)</button>' +
+            '<button id="b2">2. Enter fullscreen (top frame, red div)</button>' +
+            '<button id="b3">3. Exit fullscreen</button>' +
+            '<button id="b4">4. Start camera + mic (keep running)</button>' +
+            '<button id="b5">5. Stop camera</button>' +
+            '<button id="b6">6. Camera then fullscreen immediately</button>' +
+            '<div id="reddiv">red div (fullscreen target for #2)</div>' +
+            '<iframe src="fstest.html?frame=1"></iframe>' +
+            '<video id="cam" autoplay muted playsinline></video>' +
+            '<div id="log"></div>'
+        );
+    }
+</script>
+</body>
+</html>
