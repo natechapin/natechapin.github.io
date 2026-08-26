@@ -28,7 +28,7 @@
     }
   ],
   "share_target": {
-    "action": "/",
+    "action": "/fileHandling/",
     "method": "GET",
     "params" : {}
   },
