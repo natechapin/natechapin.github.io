@@ -30,7 +30,9 @@
   "share_target": {
     "action": "/fileHandling/",
     "method": "GET",
-    "params" : {}
+    "params" : {
+      "text": "shared_text"
+    }
   },
   "theme_color": "#9aca42"
 }
