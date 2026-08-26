@@ -35,5 +35,18 @@
       "text": "shared_text"
     }
   },
-  "theme_color": "#9aca42"
+  "theme_color": "#9aca42",
+  "icons": [
+    {
+      "src": "/icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512x512_maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
